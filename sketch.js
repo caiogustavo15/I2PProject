@@ -23,15 +23,10 @@ function setup(){
 
 }
 
-function hoverd(){
+function mouseClicked(){
   p.clicked(mouseX,mouseY);
 }
 
 function zoom(event){
-  console.log('zoom');
   p.zoomMod(event);
-}
-
-function draw(){
-    cv.mouseOver(hoverd);
 }

@@ -8,6 +8,13 @@ function Country(title, code, totalPop, malePop, femalePop, years, layout){
   this.years = years;
   this.layout = layout;
 
+  this.total = [];
+  this.male = [];
+  this.female = [];
+
+  this.zoomY = 1;
+  this.radius = 5;
+
   this.getDataByYear = function (year){
 
     if(year > this.years[this.years.length-1]){
@@ -26,61 +33,100 @@ function Country(title, code, totalPop, malePop, femalePop, years, layout){
     }
   };
 
-  this.draw = function (year=2017){
+  this.draw = function (){
+    clear();
     drawTitle(this.title, this.layout);
-    let a = this.getDataByYear(year);
-    if(a == 'error'){
-      alert(`Sorry, you are trying to draw a year we that we don't have data for.`);
-      return;
-    }
-    // drawYAxisLabels(min, max, layout, mapFunction,decimalPlaces)
+    drawAxes(this.layout);
     // // Draw all y-axis labels.
-    drawYAxisLabels(min(this.totalPop),
+    drawYAxisLabels(1000000/this.zoomY,
                     max(this.totalPop),
                     this.layout,
-                    this.mapPopToHeightLabel.bind(this),
+                    this.mapY.bind(this),
                     0);
 
-    //
-    // // debugger;
     var numYears = this.years[this.years.length - 1] - this.years[0];
-    var previous = {
+    var t = {
           year: this.years[0],
           totalPop: this.totalPop[0]
-      };
+        };
+    var m = {
+          year: this.years[0],
+          totalPop: this.malePop[0]
+        };
+    var f = {
+          year: this.years[0],
+          totalPop: this.femalePop[0]
+        };
 
     for(let i = 0; i < this.years.length ; i++){
-      var xLabelSkip = ceil(numYears / this.layout.numXTickLabels);
+      var xLabelSkip = ceil((numYears / this.layout.numXTickLabels));
       // Draw the tick label marking the start of the previous year.
       if (i % xLabelSkip == 0) {
-        drawXAxisLabel(previous.year, this.layout,
-                       this.mapYearToWidth.bind(this));
+        drawXAxisLabel(t.year, this.layout,
+                       this.mapX.bind(this));
       }
-      previous.year = this.years[i];
-      previous.totalPop = this.totalPop[i];
-    }
-        // console.log(a)
-    // console.log(`data: t ${a.totalPop} m ${a.malePop} f ${a.femalePop}`);
-    // console.log(`Contry Name: ${this.name}`);
-    fill(random(255),random(255),random(255));
-    ellipse(width/2,height/2,20)
-    // loop();
-  }
+      //draws total pop in red
+      fill(255,0,0);
+      drawEllipse (t.year,t.totalPop,this.radius,this.mapX.bind(this),this.mapY.bind(this));
+      // ellipse(this.mapX(t.year),this.mapY(t.totalPop), this.radius);
+      //push data to array for click events
+      let d = {'x': this.mapX(t.year),
+               'y':this.mapY(t.totalPop),
+               'r': this.radius * 2,
+               'year': this.years[i],
+               'pop': this.totalPop[i]}
+      this.total.push(d);
+      //update values
+      t.year = this.years[i];
+      t.totalPop = this.totalPop[i];
 
-  this.mapPopToHeightLabel = function(value) {
-    return map( value,
-                min(this.totalPop),
-                max(this.totalPop),
-                this.layout.bottomMargin,
-                this.layout.topMargin);
+      //draws male pop in green //
+      fill(0,255,0);
+      // ellipse(this.mapX(m.year),this.mapY(m.totalPop), this.radius);
+      drawEllipse (m.year,m.totalPop,this.radius,this.mapX.bind(this),this.mapY.bind(this));
+      //push data to array for click events
+      d = {'x': this.mapX(m.year),
+           'y':this.mapY(m.totalPop),
+           'r': this.radius * 2,
+           'year': this.years[i],
+           'pop': this.malePop[i]}
+      this.male.push(d);
+      //update values
+      m.year = this.years[i];
+      m.totalPop = this.malePop[i];
+
+      //draws female pop in blue //
+      fill(0,0,255);
+      // ellipse(this.mapX(f.year),this.mapY(f.totalPop), this.radius);
+      drawEllipse (f.year,f.totalPop,this.radius,this.mapX.bind(this),this.mapY.bind(this));
+      //push data to array for click events
+      d = {'x': this.mapX(f.year),
+           'y':this.mapY(f.totalPop),
+           'r': this.radius * 2,
+           'year': this.years[i],
+           'pop': this.femalePop[i]}
+      this.female.push(d);
+      //update values
+      f.year = this.years[i];
+      f.totalPop = this.femalePop[i];
+      // debugger;
+    }
   };
 
-  this.mapYearToWidth = function(value) {
-      return map(value,
-                 this.years[0],
-                 this.years[this.years.length-1],
-                 this.layout.leftMargin,
-                 this.layout.rightMargin);
+  this.mapX = function(value){
+    return map(value,
+               min(this.years),
+               max(this.years),
+               this.layout.leftMargin + this.layout.pad * 4,
+               this.layout.rightMargin);
+  };
+
+  this.mapY = function(value){
+    return map(value,
+               1000000/this.zoomY,
+               max(this.totalPop),
+               this.layout.bottomMargin,
+               this.layout.topMargin);
   };
 
 }

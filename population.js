@@ -21,6 +21,10 @@ function Pop(dataTotal, dataMale, dataFemale){
   this.male =[];
   this.female =[];
 
+  this.drawingAll = false;
+  this.drawingCountry = false;
+  this.countryName = '';
+
   this.zoomY = 1;
   this.zoomX = 1;
   this.radius = 5;
@@ -31,7 +35,7 @@ function Pop(dataTotal, dataMale, dataFemale){
     // Locations of margin positions. Left and bottom have double margin
     // size due to axis and tick labels.
     leftMargin: this.marginSize * 4,
-    rightMargin: width - this.marginSize * 3,
+    rightMargin: width - this.marginSize ,
     topMargin: this.marginSize * 2,
     bottomMargin: height - this.marginSize * 2,
     pad: 5,
@@ -80,9 +84,14 @@ function Pop(dataTotal, dataMale, dataFemale){
   this.draw = function(country='all'){
 
     if(country == 'all'){
+      this.drawingCountry = false;
+      this.drawingAll = true;
       this.drawTotal();
     }
     else{
+      this.countryName = country;
+      this.drawingAll = false;
+      this.drawingCountry = true;
       clear();
       drawAxes(this.layout);
       let index = this.getIndex(country);
@@ -102,7 +111,7 @@ function Pop(dataTotal, dataMale, dataFemale){
     drawTitle(this.title, this.layout);
     drawAxes(this.layout);
     // // Draw all y-axis labels.
-    drawYAxisLabels(1000000000/this.zoomY,//0,//min(this.totalPop)
+    drawYAxisLabels(1000000000/this.zoomY,
                     max(this.totalPop),
                     this.layout,
                     this.mapY.bind(this),
@@ -177,22 +186,6 @@ function Pop(dataTotal, dataMale, dataFemale){
     }
   };
 
-  this.mapPopToHeightLabel = function(value) {
-    return map( value,
-                min(this.totalPop),
-                max(this.totalPop),
-                this.layout.bottomMargin,
-                this.layout.topMargin);
-  };
-
-  this.mapYearToWidth = function(value) {
-      return map(value,
-                 this.years[0],
-                 this.years[this.years.length-1],
-                 this.layout.leftMargin,
-                 this.layout.rightMargin);
-  };
-
   this.mapX = function(value){
     return map(value,
                min(this.years),
@@ -213,24 +206,21 @@ function Pop(dataTotal, dataMale, dataFemale){
     //check total pop array
     for(let i = 0 ; i < this.total.length ; i++){
       if (dist(this.total[i].x,this.total[i].y, x, y) < this.radius ){
-        console.log(this.total[i].year)
-        console.log(this.total[i].pop)
+        alert(` T ${this.total[i].year} ${this.total[i].pop} `);
       }
     }
 
     //check male pop array
     for(let i = 0 ; i < this.male.length ; i++){
       if (dist(this.male[i].x,this.male[i].y, x, y) < this.radius ){
-        console.log(this.male[i].year)
-        console.log(this.male[i].pop)
+        alert(` M ${this.male[i].year} ${this.male[i].pop} `);
       }
     }
 
     //check female pop array
     for(let i = 0 ; i < this.female.length ; i++){
       if (dist(this.female[i].x,this.female[i].y, x, y) < this.radius ){
-        console.log(this.female[i].year)
-        console.log(this.female[i].pop)
+        alert(` F ${this.female[i].year} ${this.female[i].pop} `);
       }
     }
 
@@ -238,16 +228,34 @@ function Pop(dataTotal, dataMale, dataFemale){
 
   this.zoomMod = function(event){
     //shift + mouseWheel to activate zoom
-    if(event.shiftKey == true){
-      if(event.deltaY > 0 && this.zoomY < 10){
-        this.zoomY++;
-        this.draw();
-      }
-      if(event.deltaY < 0 && this.zoomY > 1) {
-        this.zoomY--;
-        this.draw();
+    if(this.drawingAll){
+      if(event.shiftKey == true){
+        if(event.deltaY > 0 && this.zoomY < 20){
+          this.zoomY++;
+          this.draw();
+        }
+        if(event.deltaY < 0 && this.zoomY > 1) {
+          this.zoomY--;
+          this.draw();
+        }
       }
     }
+    if(this.drawingCountry){
+      let index = this.getIndex(this.countryName);
+      if(!isNaN(index)){
+        if(event.shiftKey == true){
+          if(event.deltaY > 0 && this.countries[index].zoomY < 10){
+            this.countries[index].zoomY++;
+            this.countries[index].draw();
+          }
+          if(event.deltaY < 0 && this.countries[index].zoomY > 1) {
+            this.countries[index].zoomY--;
+            this.countries[index].draw();
+          }
+        }
+      }
+    }
+
     // if(event.ctrlKey == true)
     // console.log(event.shiftKey);
     console.log(this.zoomY);
