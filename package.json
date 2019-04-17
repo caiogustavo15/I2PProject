@@ -1,11 +1,28 @@
 {
-  "name": "i2p",
+  "name": "i2project",
   "version": "1.0.0",
   "description": "Course work for I2P",
-  "main": "sketch.js",
+  "main": "index.js",
   "scripts": {
+    "start": "node index",
+    "dev": "nodemon index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "caiogustavo15",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caiogustavo15/I2PProject.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/caiogustavo15/I2PProject/issues"
+  },
+  "homepage": "https://github.com/caiogustavo15/I2PProject#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.11"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
