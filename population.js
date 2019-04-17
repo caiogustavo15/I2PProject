@@ -21,7 +21,8 @@ function Pop(dataTotal, dataMale, dataFemale){
   this.male =[];
   this.female =[];
 
-  this.zoom = 1;
+  this.zoomY = 1;
+  this.zoomX = 1;
   this.radius = 5;
   this.marginSize = 15;
   this.layout = {
@@ -79,9 +80,6 @@ function Pop(dataTotal, dataMale, dataFemale){
   this.draw = function(country='all'){
 
     if(country == 'all'){
-      clear();
-      drawTitle(this.title, this.layout);
-      drawAxes(this.layout);
       this.drawTotal();
     }
     else{
@@ -100,9 +98,11 @@ function Pop(dataTotal, dataMale, dataFemale){
   };
 
   this.drawTotal = function() {
-
+    clear();
+    drawTitle(this.title, this.layout);
+    drawAxes(this.layout);
     // // Draw all y-axis labels.
-    drawYAxisLabels(1000000000,//0,//min(this.totalPop)
+    drawYAxisLabels(1000000000/this.zoomY,//0,//min(this.totalPop)
                     max(this.totalPop),
                     this.layout,
                     this.mapY.bind(this),
@@ -203,7 +203,7 @@ function Pop(dataTotal, dataMale, dataFemale){
 
   this.mapY = function(value){
     return map(value,
-               1000000000/this.zoom,
+               1000000000/this.zoomY,
                max(this.totalPop),
                this.layout.bottomMargin,
                this.layout.topMargin);
@@ -239,17 +239,18 @@ function Pop(dataTotal, dataMale, dataFemale){
   this.zoomMod = function(event){
     //shift + mouseWheel to activate zoom
     if(event.shiftKey == true){
-      if(event.deltaY > 0 && this.zoom < 10){
-        this.zoom++;
+      if(event.deltaY > 0 && this.zoomY < 10){
+        this.zoomY++;
+        this.draw();
       }
-      if(event.deltaY < 0 && this.zoom > 1) {
-        this.zoom--;
+      if(event.deltaY < 0 && this.zoomY > 1) {
+        this.zoomY--;
+        this.draw();
       }
     }
-
     // if(event.ctrlKey == true)
     // console.log(event.shiftKey);
-    console.log(this.zoom);
+    console.log(this.zoomY);
   }
 
 }
