@@ -1,3 +1,5 @@
+https://i2project.herokuapp.com/
+
 * svg-pan-zoom.min.js was used to handle zoom function on the map.
   A small change was made to it's original settings to make
   event listener possible.
