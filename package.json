@@ -1,0 +1,11 @@
+{
+  "name": "i2p",
+  "version": "1.0.0",
+  "description": "Course work for I2P",
+  "main": "sketch.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "caiogustavo15",
+  "license": "MIT"
+}
