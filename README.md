@@ -1,15 +1,15 @@
 https://i2project.herokuapp.com/
 
 Download: 
-  * <code>git clone https://github.com/caiogustavo15/I2PProject.git </code> // on terminal
+   <code>git clone https://github.com/caiogustavo15/I2PProject.git </code> // on terminal
 Change dir:
-  * <code>cd cd I2PProject</code> // on terminal
+   <code>cd cd I2PProject</code> // on terminal
 Install depedencies:
-  * <code>npm i</code>
+   <code>npm i</code>
 Run server:
-  * <code>npm start</code> // run production
+   <code>npm start</code> // run production
   or
-  * <code>npm run dev</code> //run dev server
+   <code>npm run dev</code> //run dev server
   
   
 * svg-pan-zoom.min.js was used to handle zoom function on the map.
