@@ -8,7 +8,7 @@ Change dir:
 <br>
    <code>cd cd I2PProject</code> // on terminal
 <br>
-Install depedencies:
+Install dependencies:
 <br>
     <code>npm i</code>
 <br>
