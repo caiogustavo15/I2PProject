@@ -2,13 +2,18 @@ https://i2project.herokuapp.com/
 
 Download: 
    <code>git clone https://github.com/caiogustavo15/I2PProject.git </code> // on terminal
+<br>
 Change dir:
    <code>cd cd I2PProject</code> // on terminal
+<br>
 Install depedencies:
    <code>npm i</code>
+<br>
 Run server:
    <code>npm start</code> // run production
-  or
+<br>
+or
+<br>
    <code>npm run dev</code> //run dev server
   
   
