@@ -10,15 +10,15 @@ Change dir:
 <br>
 Install dependencies:
 <br>
-    <code>npm i</code>
+    <code>npm i</code> // on terminal 
 <br>
 Run server:
 <br>
-    <code>npm start</code> // run production
+    <code>npm start</code> // on terminal 
 <br>
 or
 <br>
-    <code>npm run dev</code> //run dev server
+    <code>npm run dev</code> // on terminal 
   
   
 * svg-pan-zoom.min.js was used to handle zoom function on the map.
