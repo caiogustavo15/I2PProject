@@ -7,9 +7,9 @@ Change dir:
 Install depedencies:
   * <code>npm i</code>
 Run server:
-  * <code>npm start<code> // run production
+  * <code>npm start</code> // run production
   or
-  * <code>npm run dev<code> //run dev server
+  * <code>npm run dev</code> //run dev server
   
   
 * svg-pan-zoom.min.js was used to handle zoom function on the map.
