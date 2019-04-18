@@ -71,7 +71,7 @@ function Country(title, code, totalPop, malePop, femalePop, years, layout){
       // ellipse(this.mapX(t.year),this.mapY(t.totalPop), this.radius);
       //push data to array for click events
       let d = {'x': this.mapX(t.year),
-               'y':this.mapY(t.totalPop),
+               'y': this.mapY(t.totalPop),
                'r': this.radius * 2,
                'year': this.years[i],
                'pop': this.totalPop[i]}
@@ -111,6 +111,30 @@ function Country(title, code, totalPop, malePop, femalePop, years, layout){
       f.totalPop = this.femalePop[i];
       // debugger;
     }
+  };
+
+  this.clicked = function (x,y){
+    //check total pop array
+    for(let i = 0 ; i < this.total.length ; i++){
+      if (dist(this.total[i].x,this.total[i].y, x, y) < this.radius ){
+        alert(` T ${this.total[i].year} ${this.total[i].pop} `);
+      }
+    }
+
+    //check male pop array
+    for(let i = 0 ; i < this.male.length ; i++){
+      if (dist(this.male[i].x,this.male[i].y, x, y) < this.radius ){
+        alert(` M ${this.male[i].year} ${this.male[i].pop} `);
+      }
+    }
+
+    //check female pop array
+    for(let i = 0 ; i < this.female.length ; i++){
+      if (dist(this.female[i].x,this.female[i].y, x, y) < this.radius ){
+        alert(` F ${this.female[i].year} ${this.female[i].pop} `);
+      }
+    }
+
   };
 
   this.mapX = function(value){

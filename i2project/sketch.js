@@ -25,6 +25,9 @@ function setup(){
 
 function mouseClicked(){
   p.clicked(mouseX,mouseY);
+  for(let i = 0 ; i < p.countries.length ; i++){
+    p.countries[i].clicked(mouseX,mouseY);
+  }
 }
 
 function zoom(event){
