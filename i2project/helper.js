@@ -159,3 +159,9 @@ function clearDiv(){
 function displayMsg(msg){
   document.getElementById('aside').innerHTML = msg;
 }
+
+function info(){
+  let cv = document.getElementById('canvas');
+  cv.classList.add('blurDiv');
+  setTimeout(function(){ cv.classList.remove('blurDiv'); }, 5000);
+}

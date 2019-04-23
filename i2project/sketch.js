@@ -15,6 +15,7 @@ function setup(){
 
   cv = createCanvas(700,550);
   cv.parent('canvas');
+  // cv.mouseOver(info);
   //
   p = new Pop(dataTotal.getArray(), dataMale.getArray(), dataFemale.getArray());
   p.start();

@@ -36,6 +36,7 @@ function Country(title, code, totalPop, malePop, femalePop, years, layout){
   this.draw = function (){
     clear();
     clearDiv();
+    drawLegend(this.layout,this.radius);
     drawTitle(this.title, this.layout);
     drawAxes(this.layout);
     // // Draw all y-axis labels.
@@ -119,7 +120,7 @@ function Country(title, code, totalPop, malePop, femalePop, years, layout){
     for(let i = 0 ; i < this.total.length ; i++){
       if (dist(this.total[i].x,this.total[i].y, x, y) < this.radius ){
         // alert(` T ${this.total[i].year} ${this.total[i].pop} `);
-        msg += `${this.title} population in ${this.total[i].year} was ${this.total[i].pop} people.`;
+        msg += `${this.title}'s population in ${this.total[i].year} was ${shrinkNum(this.total[i].pop)} people.`;
         break;
       }
     }
@@ -128,7 +129,7 @@ function Country(title, code, totalPop, malePop, femalePop, years, layout){
     for(let i = 0 ; i < this.male.length ; i++){
       if (dist(this.male[i].x,this.male[i].y, x, y) < this.radius ){
         // alert(` M ${this.male[i].year} ${this.male[i].pop} `);
-        msg += `${this.title} male population in ${this.male[i].year} was ${this.male[i].pop}.`;
+        msg += `${this.title}'s male population in ${this.male[i].year} was ${shrinkNum(this.male[i].pop)}.`;
         break;
       }
     }
@@ -137,7 +138,7 @@ function Country(title, code, totalPop, malePop, femalePop, years, layout){
     for(let i = 0 ; i < this.female.length ; i++){
       if (dist(this.female[i].x,this.female[i].y, x, y) < this.radius ){
         // alert(` F ${this.female[i].year} ${this.female[i].pop} `);
-        msg += `${this.title} female population in ${this.female[i].year} was ${this.female[i].pop}.`;
+        msg += `${this.title}'s female population in ${this.female[i].year} was ${shrinkNum(this.female[i].pop)}.`;
         break;
       }
     }
