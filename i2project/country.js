@@ -111,6 +111,8 @@ function Country(title, code, totalPop, malePop, femalePop, years, layout){
       f.totalPop = this.femalePop[i];
       // debugger;
     }
+
+    drawLegend(this.layout,this.radius);
   };
 
   this.clicked = function (x,y){

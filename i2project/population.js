@@ -37,7 +37,7 @@ function Pop(dataTotal, dataMale, dataFemale){
     leftMargin: this.marginSize * 4,
     rightMargin: width - this.marginSize ,
     topMargin: this.marginSize * 2,
-    bottomMargin: height - this.marginSize * 2,
+    bottomMargin: height - this.marginSize * 5,
     pad: 5,
 
     plotWidth: function() {
@@ -184,6 +184,8 @@ function Pop(dataTotal, dataMale, dataFemale){
       f.totalPop = this.femalePop[i];
       // debugger;
     }
+
+    drawLegend(this.layout,this.radius);
   };
 
   this.mapX = function(value){
