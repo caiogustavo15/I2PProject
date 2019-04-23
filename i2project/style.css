@@ -16,11 +16,24 @@ body {
   height: 550px;
 }
 
-#aside {
+#bottom {
   display: block;
   position: absolute;
   left: 600px;
   margin: 15px 25px;
+}
+
+#aside{
+  position: fixed;
+  top: 15px;
+  right: 10px;
+  width: 50px;
+  height: 50px;
+  border: 3px rgba(46,107,204,0.5) solid;
+}
+
+.info{
+  display: none;
 }
 
 .blurDiv{

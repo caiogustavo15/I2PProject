@@ -157,7 +157,7 @@ function clearDiv(){
 }
 
 function displayMsg(msg){
-  document.getElementById('aside').innerHTML = msg;
+  document.getElementById('bottom').innerHTML = msg;
 }
 
 function info(){
