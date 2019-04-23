@@ -1,26 +1,26 @@
 
 function drawLegend (layout,radius, total='Total', male='Male', female='Female'){
-
-  // let px1 = layout.plotWidth() / 2;
-  let px1 = (layout.rightMargin - layout.leftMargin)/2;
-  let py = height - layout.marginSize;
-  let px0 = (px1 - layout.leftMargin) / 2;
-  let px2 = (layout.rightMargin - px1) / 2 + px1;
+  //set y position for labels
+  let y = height - layout.marginSize;
+  // sets x position for labels
+  let totalLabel = (layout.rightMargin - layout.leftMargin)/2;
+  let maleLabel = (totalLabel - layout.leftMargin) / 2;
+  let femaleLabel = (layout.rightMargin - totalLabel) / 2 + totalLabel;
 
   textAlign(LEFT);
-
+  // total label
   fill(255,0,0)
-  ellipse(px1,py,radius * 2);
-  text(total,px1 + radius * 3,py);
-
+  ellipse(totalLabel,y,radius * 2);
+  text(total,totalLabel + radius * 3,y);
+  // male label
   fill(0,255,0)
-  ellipse(px0,py,radius * 2);
-  text(male,px0 + radius * 3,py);
-
+  ellipse(maleLabel,y,radius * 2);
+  text(male,maleLabel + radius * 3,y);
+  // female label
   fill(0,0,255)
-  ellipse(px2,py,radius * 2);
-  text(female,px2 + radius * 3,py);
-  // debugger;
+  ellipse(femaleLabel,y,radius * 2);
+  text(female,femaleLabel + radius * 3,y);
+
 }
 
 function drawAxes(layout){
@@ -151,3 +151,11 @@ function shrinkNum(number) {
 }
 
 //
+
+function clearDiv(){
+  document.getElementById('aside').innerHTML = '';
+}
+
+function displayMsg(msg){
+  document.getElementById('aside').innerHTML = msg;
+}

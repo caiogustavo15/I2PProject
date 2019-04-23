@@ -83,6 +83,8 @@ function Pop(dataTotal, dataMale, dataFemale){
 
   this.draw = function(country='all'){
 
+    clearDiv();
+    
     if(country == 'all'){
       this.drawingCountry = false;
       this.drawingAll = true;
@@ -205,27 +207,31 @@ function Pop(dataTotal, dataMale, dataFemale){
   };
 
   this.clicked = function (x,y){
+    let msg = '';
     //check total pop array
     for(let i = 0 ; i < this.total.length ; i++){
       if (dist(this.total[i].x,this.total[i].y, x, y) < this.radius ){
-        alert(` T ${this.total[i].year} ${this.total[i].pop} `);
+        msg += `The world's population in ${this.total[i].year} was ${this.total[i].pop} people.`;
+        break;
       }
     }
 
     //check male pop array
     for(let i = 0 ; i < this.male.length ; i++){
       if (dist(this.male[i].x,this.male[i].y, x, y) < this.radius ){
-        alert(` M ${this.male[i].year} ${this.male[i].pop} `);
+        msg += `The world's male population in ${this.male[i].year} was ${this.male[i].pop}.`;
+        break;
       }
     }
 
     //check female pop array
     for(let i = 0 ; i < this.female.length ; i++){
       if (dist(this.female[i].x,this.female[i].y, x, y) < this.radius ){
-        alert(` F ${this.female[i].year} ${this.female[i].pop} `);
+        msg += ` The world's female population in ${this.female[i].year} was ${this.female[i].pop}.`;
+        break;
       }
     }
-
+    displayMsg(msg);
   };
 
   this.zoomMod = function(event){

@@ -35,6 +35,7 @@ function Country(title, code, totalPop, malePop, femalePop, years, layout){
 
   this.draw = function (){
     clear();
+    clearDiv();
     drawTitle(this.title, this.layout);
     drawAxes(this.layout);
     // // Draw all y-axis labels.
@@ -58,7 +59,7 @@ function Country(title, code, totalPop, malePop, femalePop, years, layout){
           totalPop: this.femalePop[0]
         };
 
-    for(let i = 0; i < this.years.length ; i++){
+    for(let i = 1; i < this.years.length ; i++){
       var xLabelSkip = ceil((numYears / this.layout.numXTickLabels));
       // Draw the tick label marking the start of the previous year.
       if (i % xLabelSkip == 0) {
@@ -109,35 +110,43 @@ function Country(title, code, totalPop, malePop, femalePop, years, layout){
       //update values
       f.year = this.years[i];
       f.totalPop = this.femalePop[i];
-      // debugger;
     }
-
-    drawLegend(this.layout,this.radius);
   };
 
   this.clicked = function (x,y){
+    let msg='';
     //check total pop array
     for(let i = 0 ; i < this.total.length ; i++){
       if (dist(this.total[i].x,this.total[i].y, x, y) < this.radius ){
-        alert(` T ${this.total[i].year} ${this.total[i].pop} `);
+        // alert(` T ${this.total[i].year} ${this.total[i].pop} `);
+        msg += `${this.title} population in ${this.total[i].year} was ${this.total[i].pop} people.`;
+        break;
       }
     }
 
     //check male pop array
     for(let i = 0 ; i < this.male.length ; i++){
       if (dist(this.male[i].x,this.male[i].y, x, y) < this.radius ){
-        alert(` M ${this.male[i].year} ${this.male[i].pop} `);
+        // alert(` M ${this.male[i].year} ${this.male[i].pop} `);
+        msg += `${this.title} male population in ${this.male[i].year} was ${this.male[i].pop}.`;
+        break;
       }
     }
 
     //check female pop array
     for(let i = 0 ; i < this.female.length ; i++){
       if (dist(this.female[i].x,this.female[i].y, x, y) < this.radius ){
-        alert(` F ${this.female[i].year} ${this.female[i].pop} `);
+        // alert(` F ${this.female[i].year} ${this.female[i].pop} `);
+        msg += `${this.title} female population in ${this.female[i].year} was ${this.female[i].pop}.`;
+        break;
       }
     }
 
+    if(msg !=''){
+      displayMsg(msg);
+    }
   };
+
 
   this.mapX = function(value){
     return map(value,
