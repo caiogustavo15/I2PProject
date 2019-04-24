@@ -1,3 +1,9 @@
+:root {
+  --color-blue: rgba(46,107,204,0.5);
+  --color-purple: rgba(146,107,204,0.5);
+  --color-gray: rgba(102,102,102,1);
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -6,7 +12,7 @@ body {
 
 .container{
   display: inline-block;
-  border: 5px rgba(46,107,204,0.5) solid;
+  border: 5px var(--color-blue) solid;
   margin-top: 15px;
   margin-left: 25px;
 }
@@ -17,10 +23,15 @@ body {
 }
 
 #bottom {
-  display: block;
-  position: absolute;
-  left: 600px;
-  margin: 15px 25px;
+  display: none;
+  min-height: 45px;
+  margin: 15px 90px 15px 25px;
+  border: 5px solid var(--color-blue);
+  justify-content: center;
+  text-align: center;
+  padding: 15px;
+  font-size: 1.5em;
+  box-sizing: border-box;
 }
 
 #aside{
@@ -44,7 +55,6 @@ body {
 	height: 300px;
 	width: 500px;
 	background-color: white;
-	/* text-align: center; */
 	padding: 20px;
 	position: relative;
 	border-radius: 4px;
@@ -61,13 +71,10 @@ body {
 	color: #333;
 	transform: rotate(45deg);
 	cursor: pointer;
-	&:hover {
-		color: #666;
-	}
 }
 
 .button {
-	background-color: rgba(46,107,204,0.5);
+	background-color: var(--color-blue);
 	border: 2px solid white;
 	border-radius: 30px 0 0 30px;
 	text-decoration: none;
@@ -75,11 +82,6 @@ body {
 	color: white;
   font-size: 10px;
 	display: inline-block;
-	&:hover {
-		background-color: white;
-		color: rgba(146,107,204,0.5);
-		border: 2px solid $blue;
-	}
 }
 
 #content {

@@ -153,46 +153,11 @@ function shrinkNum(number) {
 //
 
 function clearDiv(){
+  document.getElementById('bottom').style.display = 'none';
   document.getElementById('bottom').innerHTML = '';
 }
 
 function displayMsg(msg){
   document.getElementById('bottom').innerHTML = msg;
+  document.getElementById('bottom').style.display = 'block';
 }
-
-//event list for info
-
-document.getElementById('button').addEventListener("mouseover", function () {
-  document.getElementById('button').style.fontSize = '16px';
-});
-
-document.getElementById('button').addEventListener("mouseout", function () {
-  document.getElementById('button').style.fontSize = '10px';
-});
-
-document.getElementById('button').addEventListener("click", function() {
-	document.querySelector('.bkgBlur').style.display = "flex";
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("content").innerHTML =
-      this.responseText;
-    }
-  };
-  xhttp.open("GET", "../README.md", true);
-  xhttp.send();
-
-});
-
-document.querySelector('.close').addEventListener("click", function() {
-	document.querySelector('.bkgBlur').style.display = "none";
-});
-
-document.onkeydown = function(e) {
-  // e = e || window.event;
-    if (e.keyCode == 27 &&
-        document.querySelector('.bkgBlur').style.display == "flex"
-      ) {
-      document.querySelector('.bkgBlur').style.display = "none";
-    }
-};

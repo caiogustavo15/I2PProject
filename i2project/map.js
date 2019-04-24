@@ -8,7 +8,7 @@ function Map(){
     //creates new object to place svg in
     var map = document.createElement('object');
     map.id = 'map';
-    map.data = 'world.svg';
+    map.data = 'media/world.svg';
     map.height = '100%';
     map.width = '100%';
     //append div

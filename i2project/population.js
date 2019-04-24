@@ -211,7 +211,7 @@ function Pop(dataTotal, dataMale, dataFemale){
     //check total pop array
     for(let i = 0 ; i < this.total.length ; i++){
       if (dist(this.total[i].x,this.total[i].y, x, y) < this.radius ){
-        msg += `The world's population in ${this.total[i].year} was ${shrinkNum(this.total[i].pop)} people.`;
+        msg += ` The world's population in ${this.total[i].year} was ${shrinkNum(this.total[i].pop)} people.`;
         break;
       }
     }
@@ -219,7 +219,7 @@ function Pop(dataTotal, dataMale, dataFemale){
     //check male pop array
     for(let i = 0 ; i < this.male.length ; i++){
       if (dist(this.male[i].x,this.male[i].y, x, y) < this.radius ){
-        msg += `The world's male population in ${this.male[i].year} was ${shrinkNum(this.male[i].pop)} people.`;
+        msg += ` The world's male population in ${this.male[i].year} was ${shrinkNum(this.male[i].pop)} people.`;
         break;
       }
     }
