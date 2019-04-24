@@ -3,20 +3,24 @@ let colorBlue = getComputedStyle(document.documentElement).getPropertyValue('--c
 let colorPurple = getComputedStyle(document.documentElement).getPropertyValue('--color-purple');
 let colorGray = getComputedStyle(document.documentElement).getPropertyValue('--color-gray');
 
-let button = document.getElementById('button');
-button.addEventListener("mouseover", function () {
-  button.style.fontSize = '16px';
-  button.style.backgroundColor = colorPurple;
-  button.style.color = 'white';
+let buttonReadme = document.getElementById('buttonInfo');
+buttonReadme.addEventListener("mouseover", function () {
+  // button.style.fontSize = '16px';
+  // button.style.backgroundColor = colorPurple;
+  // button.style.color = 'white';
+  buttonReadme.classList.remove('button');
+  buttonReadme.classList.add('buttonHover');
 });
 
-button.addEventListener("mouseout", function () {
-  button.style.fontSize = '10px';
-  button.style.backgroundColor = colorBlue;
-  button.style.color = 'white';
+buttonReadme.addEventListener("mouseout", function () {
+  // button.style.fontSize = '10px';
+  // button.style.backgroundColor = colorBlue;
+  // button.style.color = 'white';
+  buttonReadme.classList.remove('buttonHover');
+  buttonReadme.classList.add('button');
 });
 
-button.addEventListener("click", function() {
+buttonReadme.addEventListener("click", function() {
 	document.querySelector('.bkgBlur').style.display = "flex";
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -28,6 +32,23 @@ button.addEventListener("click", function() {
   xhttp.open("GET", "../README.md", true);
   xhttp.send();
 
+});
+
+let buttonReset = document.getElementById('buttonwReset');
+
+buttonReset.addEventListener("mouseover", function () {
+  buttonReset.classList.remove('button');
+  buttonReset.classList.add('buttonHover');
+});
+
+buttonReset.addEventListener("mouseout", function () {
+  buttonReset.classList.remove('buttonHover');
+  buttonReset.classList.add('button');
+});
+
+buttonReset.addEventListener("click", function() {
+  console.log('buttonReset');
+  window.location.href = './index.html'
 });
 
 document.querySelector('.close').addEventListener("mouseover", function() {
