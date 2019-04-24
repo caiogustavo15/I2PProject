@@ -81,7 +81,8 @@ body {
 	padding: 15px 5px 15px 15px;
 	color: white;
   font-size: 10px;
-	display: inline-block;
+	display: block;
+  margin-top: 15px;
 }
 
 #content {
