@@ -153,15 +153,48 @@ function shrinkNum(number) {
 //
 
 function clearDiv(){
-  document.getElementById('aside').innerHTML = '';
+  document.getElementById('bottom').innerHTML = '';
 }
 
 function displayMsg(msg){
   document.getElementById('bottom').innerHTML = msg;
 }
 
-function info(){
-  let cv = document.getElementById('canvas');
-  cv.classList.add('blurDiv');
-  setTimeout(function(){ cv.classList.remove('blurDiv'); }, 5000);
-}
+//event list for info
+
+document.getElementById('button').addEventListener("mouseover", function () {
+  console.log('a')
+  document.getElementById('button').style.fontSize = '16px';
+});
+
+document.getElementById('button').addEventListener("mouseout", function () {
+  console.log('a')
+  document.getElementById('button').style.fontSize = '10px';
+});
+
+document.getElementById('button').addEventListener("click", function() {
+	document.querySelector('.bkgBlur').style.display = "flex";
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("content").innerHTML =
+      this.responseText;
+    }
+  };
+  xhttp.open("GET", "../README.md", true);
+  xhttp.send();
+
+});
+
+document.querySelector('.close').addEventListener("click", function() {
+	document.querySelector('.bkgBlur').style.display = "none";
+});
+
+document.onkeydown = function(e) {
+  // e = e || window.event;
+    if (e.keyCode == 27 &&
+        document.querySelector('.bkgBlur').style.display == "flex"
+      ) {
+      document.querySelector('.bkgBlur').style.display = "none";
+    }
+};

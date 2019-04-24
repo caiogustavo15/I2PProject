@@ -1,3 +1,4 @@
+
 let cv,dataTotal, dataMale, dataFemale, p, c,m,a;
 
 function preload(){
@@ -13,10 +14,9 @@ function preload(){
 
 function setup(){
 
-  cv = createCanvas(700,550);
+  cv = createCanvas(700,500);
   cv.parent('canvas');
-  // cv.mouseOver(info);
-  //
+
   p = new Pop(dataTotal.getArray(), dataMale.getArray(), dataFemale.getArray());
   p.start();
   p.draw();
