@@ -163,12 +163,10 @@ function displayMsg(msg){
 //event list for info
 
 document.getElementById('button').addEventListener("mouseover", function () {
-  console.log('a')
   document.getElementById('button').style.fontSize = '16px';
 });
 
 document.getElementById('button').addEventListener("mouseout", function () {
-  console.log('a')
   document.getElementById('button').style.fontSize = '10px';
 });
 
