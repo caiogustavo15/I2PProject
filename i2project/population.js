@@ -46,7 +46,7 @@ function Pop(dataTotal, dataMale, dataFemale){
     // Boolean to enable/disable background grid.
     grid: true,
     numYTickLabels : 14,
-    numXTickLabels: 9
+    numXTickLabels: 14
   };
 
   this.start = function(){
@@ -113,11 +113,10 @@ function Pop(dataTotal, dataMale, dataFemale){
     drawTitle(this.title, this.layout);
     drawAxes(this.layout);
     // // Draw all y-axis labels.
-    drawYAxisLabels(1000000000/this.zoomY,
+    drawYAxisLabels(min(min(this.malePop),min(this.femalePop)),
                     max(this.totalPop),
                     this.layout,
-                    this.mapY.bind(this),
-                    0);
+                    this.mapY.bind(this));
 
     var numYears = this.years[this.years.length - 1] - this.years[0];
     var t = {
@@ -157,7 +156,6 @@ function Pop(dataTotal, dataMale, dataFemale){
 
       //draws male pop in green //
       fill(0,255,0);
-      // ellipse(this.mapX(m.year),this.mapY(m.totalPop), this.radius);
       drawEllipse (m.year,m.totalPop,this.radius,this.mapX.bind(this),this.mapY.bind(this));
       //push data to array for click events
       d = {'x': this.mapX(m.year),
@@ -172,7 +170,6 @@ function Pop(dataTotal, dataMale, dataFemale){
 
       //draws female pop in blue //
       fill(0,0,255);
-      // ellipse(this.mapX(f.year),this.mapY(f.totalPop), this.radius);
       drawEllipse (f.year,f.totalPop,this.radius,this.mapX.bind(this),this.mapY.bind(this));
       //push data to array for click events
       d = {'x': this.mapX(f.year),
@@ -184,7 +181,6 @@ function Pop(dataTotal, dataMale, dataFemale){
       //update values
       f.year = this.years[i];
       f.totalPop = this.femalePop[i];
-      // debugger;
     }
 
     drawLegend(this.layout,this.radius);
@@ -200,10 +196,11 @@ function Pop(dataTotal, dataMale, dataFemale){
 
   this.mapY = function(value){
     return map(value,
-               1000000000/this.zoomY,
+              //min from male or female
+               min(min(this.malePop),min(this.femalePop)),
                max(this.totalPop),
-               this.layout.bottomMargin,
-               this.layout.topMargin);
+               this.layout.bottomMargin - this.layout.pad * 4,//here
+               this.layout.topMargin + this.layout.pad * 4);
   };
 
   this.clicked = function (x,y){

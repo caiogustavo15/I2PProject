@@ -44,7 +44,7 @@ function drawAxes(layout){
   pop();
 }
 
-function drawYAxisLabels(min, max, layout, mapFunction, decimalPlaces) {
+function drawYAxisLabels(min, max, layout, mapFunction) {
   // Map function must be passed with .bind(this).
   var range = max - min ;
   var yTickStep = range / layout.numYTickLabels;
@@ -107,7 +107,7 @@ function drawXAxisLabel(value, layout, mapFunction) {
     // Add grid line.
     stroke(220);
     line(x,
-         layout.topMargin,
+         layout.topMargin + layout.pad * 4,
          x,
          layout.bottomMargin);
   }
