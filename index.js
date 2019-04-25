@@ -5,8 +5,6 @@ const https = require('https');
 const markdown = require ('markdown').markdown;
 var fs = require('fs');
 
-let tet = fs.readFileSync('README.md','utf8')
-let tt = markdown.toHTML(tet);
 
 const app = express();
 
@@ -15,7 +13,9 @@ app.use(express.static(path.join(__dirname, 'i2project')));
 ////
 app.get('/README.md', function(req, res) {
   // res.sendFile(path.join(__dirname,'./README.md'));
-  res.send(tt);
+  let md = fs.readFileSync('README.md','utf8')
+  let html = markdown.toHTML(md);
+  res.send(html);
 });
 ////
 const PORT = process.env.PORT || 5000 ;
