@@ -263,10 +263,6 @@ function Pop(dataTotal, dataMale, dataFemale){
         }
       }
     }
-
-    // if(event.ctrlKey == true)
-    // console.log(event.shiftKey);
-    console.log(this.zoomY);
   }
 
 }

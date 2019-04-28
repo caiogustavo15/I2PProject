@@ -5,17 +5,11 @@ let colorGray = getComputedStyle(document.documentElement).getPropertyValue('--c
 
 let buttonReadme = document.getElementById('buttonInfo');
 buttonReadme.addEventListener("mouseover", function () {
-  // button.style.fontSize = '16px';
-  // button.style.backgroundColor = colorPurple;
-  // button.style.color = 'white';
   buttonReadme.classList.remove('button');
   buttonReadme.classList.add('buttonHover');
 });
 
 buttonReadme.addEventListener("mouseout", function () {
-  // button.style.fontSize = '10px';
-  // button.style.backgroundColor = colorBlue;
-  // button.style.color = 'white';
   buttonReadme.classList.remove('buttonHover');
   buttonReadme.classList.add('button');
 });
@@ -64,7 +58,6 @@ document.querySelector('.close').addEventListener("click", function() {
 });
 
 document.onkeydown = function(e) {
-  // e = e || window.event;
     if (e.keyCode == 27 &&
         document.querySelector('.bkgBlur').style.display == "flex"
       ) {
