@@ -15,24 +15,6 @@ function Country(title, code, totalPop, malePop, femalePop, years, layout){
   this.zoomY = 1;
   this.radius = 5;
 
-  this.getDataByYear = function (year){
-
-    if(year > this.years[this.years.length-1]){
-      return 'error';
-    }
-
-    for(var i = 0 ; i < this.years.length ; i++){
-      if (this.years[i] == year){
-        let data = {
-          'totalPop' : this.totalPop[i],
-          'malePop' : this.malePop[i],
-          'femalePop' : this.femalePop[i]
-        }
-        return data;
-      }
-    }
-  };
-
   this.draw = function() {
     clear();
     drawTitle(this.title, this.layout);
@@ -160,3 +142,21 @@ function Country(title, code, totalPop, malePop, femalePop, years, layout){
   };
 
 }
+
+Country.prototype.getDataByYear = function (year){
+
+  if(year > this.years[this.years.length-1]){
+    return 'error';
+  }
+
+  for(var i = 0 ; i < this.years.length ; i++){
+    if (this.years[i] == year){
+      let data = {
+        'totalPop' : this.totalPop[i],
+        'malePop' : this.malePop[i],
+        'femalePop' : this.femalePop[i]
+      }
+      return data;
+    }
+  }
+};

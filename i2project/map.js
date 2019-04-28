@@ -1,9 +1,10 @@
-function Map(){
+function Map() {
+
   var self=this;
   this.name = "World Map";
   this.id = "maps";
-  this.teste =[];
-  this.start = function(){
+
+  this.start = function() {
 
     //creates new object to place svg in
     var map = document.createElement('object');
@@ -23,25 +24,24 @@ function Map(){
       var countries = Array.from(mapObject.querySelectorAll('path'));
 
       // loop over array countries and adds event listener for each of them
-      countries.forEach(function (c){self.teste.push(c.getAttributeNS(null,'title'))});
-      countries.forEach(function (country){
+      countries.forEach(function (country) {
 
-        country.addEventListener('click', returnID);
+        country.addEventListener('click', clickHandler);
 
-        function returnID (e){
+        function clickHandler(e) {
 
+          //call to draw country data to canvas
           p.draw(this.getAttributeNS(null,'title'));
 
-          //set fill of "not clicked" country back to black
+          //set fill of "not clicked" countries back to black
           countries.forEach(function (country){
             country.setAttributeNS(null,'fill','black');
             country.setAttributeNS(null,'stroke', '');
           });
 
-          // set this element fill to blue
+          // set this element color
           this.setAttributeNS(null,'fill','#282828');
           this.setAttributeNS(null,'stroke', 'green');          this.setAttributeNS(null,'stroke-width', '1px');
-          return country;
 
         }
       });

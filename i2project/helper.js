@@ -161,3 +161,12 @@ function displayMsg(msg){
   document.getElementById('bottom').innerHTML = msg;
   document.getElementById('bottom').style.display = 'block';
 }
+
+function resetMap(){
+  var mapObject = document.getElementById('map').contentDocument;
+  var countries = Array.from(mapObject.querySelectorAll('path'));
+  countries.forEach(function (country) {
+    country.setAttributeNS(null,'fill','black');
+    country.setAttributeNS(null,'stroke', '');
+  });
+}
