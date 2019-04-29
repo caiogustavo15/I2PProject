@@ -85,18 +85,21 @@ function Pop(dataTotal, dataMale, dataFemale){
     clearDiv();
 
     if(country == 'all'){
-      this.drawingCountry = false;
-      this.drawingAll = true;
+      this.drawing = true;
       this.drawTotal();
     }
     else{
-      this.countryName = country;
-      this.drawingAll = false;
-      this.drawingCountry = true;
+      this.drawing = false;
       clear();
       drawAxes(this.layout);
       let index = this.getIndex(country);
       if(!isNaN(index)){
+        for(let i = 0; i < this.countries.length;i++){
+          if(this.countries[i] != this.countries[index]){
+            this.countries[i].drawing = false;
+
+          }
+        }
         this.countries[index].draw();
       }
       else{
