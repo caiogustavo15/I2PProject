@@ -15,7 +15,7 @@ buttonReadme.addEventListener("mouseout", function () {
 });
 
 buttonReadme.addEventListener("click", function() {
-	document.querySelector('.bkgBlur').style.display = "flex";
+	document.querySelectorAll('.bkgBlur')[0].style.display = "flex";
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -41,8 +41,16 @@ buttonReset.addEventListener("mouseout", function () {
 });
 
 buttonReset.addEventListener("click", function() {
-  console.log('buttonReset');
-  window.location.href = './index.html'
+  document.querySelectorAll('.bkgBlur')[1].style.display = "flex";
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("cc").innerHTML =
+      this.responseText;
+    }
+  };
+  xhttp.open("GET", "../instructions.md", true);
+  xhttp.send();
 });
 
 document.querySelector('.close').addEventListener("mouseover", function() {
@@ -57,10 +65,17 @@ document.querySelector('.close').addEventListener("click", function() {
 	document.querySelector('.bkgBlur').style.display = "none";
 });
 
+document.querySelectorAll('.close')[1].addEventListener("mouseout", function() {
+	document.querySelectorAll('.close')[1].style.color = '#333';
+});
+
+document.querySelectorAll('.close')[1].addEventListener("click", function() {
+	document.querySelectorAll('.bkgBlur')[1].style.display = "none";
+});
+
+
 document.onkeydown = function(e) {
-    if (e.keyCode == 27 &&
-        document.querySelector('.bkgBlur').style.display == "flex"
-      ) {
-      document.querySelector('.bkgBlur').style.display = "none";
+    if (e.keyCode == 27 && document.querySelector('.bkgBlur').style.display == "flex") {
+        document.querySelector('.bkgBlur').style.display = "none";
     }
 };

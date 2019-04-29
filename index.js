@@ -17,6 +17,13 @@ app.get('/README.md', function(req, res) {
   let html = markdown.toHTML(md);
   res.send(html);
 });
+
+app.get('/instructions.md', function(req, res) {
+  // res.sendFile(path.join(__dirname,'./README.md'));
+  let md = fs.readFileSync('instructions.md','utf8')
+  let html = markdown.toHTML(md);
+  res.send(html);
+});
 ////
 const PORT = process.env.PORT || 5000 ;
 //

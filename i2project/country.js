@@ -7,6 +7,7 @@ function Country(title, code, totalPop, malePop, femalePop, years, layout){
   this.femalePop = femalePop;
   this.years = years;
   this.layout = layout;
+  this.drawing = false;
 
   this.total = [];
   this.male = [];
@@ -16,6 +17,7 @@ function Country(title, code, totalPop, malePop, femalePop, years, layout){
   this.radius = 5;
 
   this.draw = function() {
+    this.drawing = true;
     clear();
     drawTitle(this.title, this.layout);
     drawAxes(this.layout);
@@ -94,6 +96,10 @@ function Country(title, code, totalPop, malePop, femalePop, years, layout){
   };
 
   this.clicked = function (x,y){
+
+    if(!this.drawing){
+      return;
+    }
     let msg='';
     //check total pop array
     for(let i = 0 ; i < this.total.length ; i++){

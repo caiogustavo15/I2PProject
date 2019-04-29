@@ -21,8 +21,7 @@ function Pop(dataTotal, dataMale, dataFemale){
   this.male =[];
   this.female =[];
 
-  this.drawingAll = false;
-  this.drawingCountry = false;
+  this.drawing = false;
   this.countryName = '';
 
   this.zoomY = 1;
@@ -109,6 +108,7 @@ function Pop(dataTotal, dataMale, dataFemale){
   };
 
   this.drawTotal = function() {
+    this.drawing = true;
     clear();
     drawTitle(this.title, this.layout);
     drawAxes(this.layout);
@@ -204,6 +204,9 @@ function Pop(dataTotal, dataMale, dataFemale){
   };
 
   this.clicked = function (x,y){
+    if(!this.drawing){
+      return;
+    }
     let msg = '';
     //check total pop array
     for(let i = 0 ; i < this.total.length ; i++){
